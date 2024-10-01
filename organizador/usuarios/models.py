@@ -17,8 +17,8 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, password_app=None, **extra_fields):
         if not email:
             raise ValueError('O email deve ser definido.')
-        if not password_app or len(password_app) != 16:
-            raise ValueError('O password_app deve ser definido e ter 16 caracteres.')
+        if not password_app or len(password_app) != 19:
+            raise ValueError('O password_app deve ser definido e ter 19 caracteres.')
         
         email = self.normalize_email(email)
         user = self.model(email=email, password_app=password_app, **extra_fields)
@@ -36,7 +36,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, BaseControlModel):
     userId = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
-    password_app = models.CharField(max_length=16)
+    password_app = models.CharField(max_length=19)
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'

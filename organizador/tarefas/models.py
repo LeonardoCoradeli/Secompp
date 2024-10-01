@@ -8,7 +8,6 @@ CustomUser = get_user_model()
 class Task(BaseControlModel):
     taskId = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     title = models.CharField(max_length=50)
-    due_date = models.DateTimeField()
 
     def __str__(self):
         return self.title
@@ -16,9 +15,9 @@ class Task(BaseControlModel):
 class TaskLine(BaseControlModel):
     taskLineId = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     taskId = models.ForeignKey(Task, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
+    text = models.TextField()
     is_done = models.BooleanField(default=False)
-    due_date = models.DateTimeField()
+    
     def __str__(self):
         return self.title
     

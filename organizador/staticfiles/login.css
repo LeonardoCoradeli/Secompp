@@ -1,0 +1,20 @@
+/* login.css */
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white; /* Ensure text is visible on black background */
+}
+
+div {
+    background-color: rgba(128, 128, 128, 0.8); /* Grey with opacity */
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add some shadow for better visibility */
+    width: fit-content;
+    text-align: center;
+}

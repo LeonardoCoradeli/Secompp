@@ -1,0 +1,66 @@
+/* register.css */
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+}
+
+.container {
+    background-color: rgba(27, 27, 27, 0.8); /* Darker grey with opacity */
+    border-radius: 8px;
+    padding: 20px 40px; /* Add more padding for better spacing */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add some shadow for better visibility */
+    min-width: 300px; /* Set a minimum width */
+    max-width: 600px; /* Set a maximum width */
+    width: 100%; /* Ensure it takes full width within the max-width */
+    text-align: center;
+    margin: 20px; /* Add some margin for spacing */
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+}
+
+h2, p, label, input, button, a {
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font to all text elements */
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: white;
+    color: black;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+

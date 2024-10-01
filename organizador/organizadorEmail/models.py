@@ -8,6 +8,7 @@ CustomUser = get_user_model()
     
 class Emails(BaseControlModel):
     emailId = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    emailUid = models.BigIntegerField()
     subject = models.CharField(max_length=100)
     body = models.TextField()
     sender = models.EmailField()

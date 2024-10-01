@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Task Line</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'task.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Task Line to {{ task.title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Task Line</button>
+        </form>
+    </div>
+</body>
+</html>

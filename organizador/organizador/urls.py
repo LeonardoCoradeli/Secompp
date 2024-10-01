@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('usuarios/login')),  # Redireciona para a página de login
     path('usuarios/', include('usuarios.urls')),    # Inclui as URLs do app de usuário
+    path('tarefas/', include('tarefas.urls')),      # Inclui as URLs do app de tarefas
 ]

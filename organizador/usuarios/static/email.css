@@ -1,0 +1,143 @@
+/* email.css */
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: rgba(27, 27, 27, 0.8);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.user-email {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.logout-button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-button:hover {
+    background: white;
+    color: black;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    background-color: rgba(27, 27, 27, 0.8);
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.sidebar input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.sidebar button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background: white;
+    color: black;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-list li {
+    margin: 10px 0;
+}
+
+.category-list a {
+    color: white;
+    text-decoration: none;
+}
+
+.category-list a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.email-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.email-button {
+    background: rgba(27, 27, 27, 0.8);
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.email-button:hover {
+    background: white;
+    color: black;
+}
+
+.email-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.email-time {
+    font-size: 14px;
+    color: gray;
+}

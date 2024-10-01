@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Organizer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'email.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <span class="user-email">{{ user.email }}</span>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <form method="post" action="{% url 'add_category' %}">
+                {% csrf_token %}
+                <input type="text" name="category" placeholder="Add new category" required>
+                <button type="submit">Add</button>
+            </form>
+            <ul class="category-list">
+                {% for category in categories %}
+                    <li><a href="{% url 'view_category' category.id %}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <main class="content">
+            <h2>Emails</h2>
+            <div class="email-list">
+                {% for email in emails %}
+                    <button class="email-button">
+                        <div class="email-title">{{ email.title }}</div>
+                        <div class="email-time">{{ email.time }}</div>
+                    </button>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

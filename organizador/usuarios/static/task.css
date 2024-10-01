@@ -1,0 +1,77 @@
+/* Container and Grid Setup */
+.container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 20px;
+    overflow-y: auto;
+    height: 500px;
+}
+
+/* Task Square */
+.task-square {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-square h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 50%;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Save Button */
+.save-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
