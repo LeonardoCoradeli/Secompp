@@ -25,6 +25,13 @@ class Markers(BaseControlModel):
     def __str__(self):
         return self.name
     
+class UserMarker(models.Model):
+    userId = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_markers')
+    markerId = models.ForeignKey(Markers, on_delete=models.CASCADE, related_name='user_markers')
+
+    def __str__(self):
+        return f'{self.userId} - {self.markerId}'
+    
 class UserEmailMarker(models.Model):
     userId = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_email_markers')
     markerId = models.ForeignKey(Markers, on_delete=models.CASCADE, related_name='user_email_markers')

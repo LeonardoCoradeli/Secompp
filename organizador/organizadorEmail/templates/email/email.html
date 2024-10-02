@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Organizer</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'email.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <span class="user-email">{{ user.email }}</span>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <form method="post" action="{% url 'add_category' %}">
+                {% csrf_token %}
+                <input type="text" name="category" placeholder="Add new category" required>
+                <button type="submit">Add</button>
+            </form>
+            <ul class="category-list">
+                {% for category in classificadores %}
+                    <li><a href="#" class="category-link" data-category-name="{{ category.name }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <main class="content">
+            <h2>Emails</h2>
+            <button id="load-emails-button">Load Emails</button>
+            <div id="email-list" class="email-list">
+                <!-- Emails serão carregados aqui -->
+            </div>
+            <p id="no-emails-message" style="display: none;">Os emails não estão disponíveis no momento.</p>
+        </main>
+    </div>
+    
+    <script>
+        // Carregar todos os emails ao clicar no botão "Load Emails"
+        document.getElementById('load-emails-button').addEventListener('click', function() {
+            fetchEmails();  // Sem categoria selecionada, carrega todos os emails
+        });
+
+        // Carregar emails por marcador ao clicar em uma categoria
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const categoryName = this.getAttribute('data-category-name');
+                fetchEmails(categoryName);  // Passa o nome da categoria para carregar os emails relacionados
+            });
+        });
+
+        // Função genérica para buscar emails, opcionalmente passando uma categoria
+        function fetchEmails(categoryName = null) {
+            let url = '{% url "load_emails" %}';
+            if (categoryName) {
+                url += `?marker=${categoryName}`;  // Adiciona a categoria à URL, se presente
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    renderEmails(data.emails);
+                })
+                .catch(error => {
+                    console.error('Error loading emails:', error);
+                });
+        }
+
+        // Função para renderizar os emails no DOM
+        function renderEmails(emails) {
+            const emailList = document.getElementById('email-list');
+            const noEmailsMessage = document.getElementById('no-emails-message');
+            emailList.innerHTML = '';
+            if (emails.length > 0) {
+                emails.forEach(email => {
+                    const emailButton = document.createElement('button');
+                    emailButton.classList.add('email-button');
+                    emailButton.innerHTML = `
+                        <div class="email-title">${email.subject}</div>
+                        <div class="email-time">${email.date}</div>
+                        <div>${email.from}</div>
+                        <div>${email.plain_text_content}</div>
+                    `;
+                    emailList.appendChild(emailButton);
+                });
+                noEmailsMessage.style.display = 'none';
+            } else {
+                noEmailsMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -4,7 +4,11 @@ from tarefas.models import Task, TaskLine,UserTask
 from django.contrib.auth import get_user_model
 from usuarios.models import CustomUser
 import json
-
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.views import View
+import uuid
+from django.contrib import messages
 CustomUser = get_user_model()
 
 def getContextUtil(request):
@@ -33,7 +37,6 @@ def getContextUtil(request):
             'taskLines': task_lines
         })
         
-    print(context)
     return context
 
 def task_list(request):
@@ -50,5 +53,47 @@ def update_task(request, task_id, task_line_id,context):
         task_line.save()
         
     context = getContextUtil(request)
-    return render(request, 'tasks/tasks.html', context)
+    return render(request, 'tasks/tasks.html', {'task':context})
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AddTaskView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            task_title = data.get('taskTitle')
+            task_lines = data.get('taskLines', [])
+
+            if not task_title:
+                return JsonResponse({'status': 'error', 'message': 'Task title is required'}, status=400)
+
+            # Obter o usuário logado
+            usuario = request.user
+
+            # Criar a nova tarefa
+            task = Task.objects.create(
+                taskId=uuid.uuid4(),
+                title=task_title,
+                systemSmartDelete=False
+            )
+
+            # Associar a tarefa ao usuário
+            UserTask.objects.create(
+                userId=usuario,
+                taskId=task
+            )
+
+            # Criar as linhas de tarefa
+            for line in task_lines:
+                TaskLine.objects.create(
+                    taskLineId=uuid.uuid4(),
+                    taskId=task,
+                    text=line['taskLineText'],
+                    is_done=line['taskLineCheckbox']
+                )
+
+            return JsonResponse({'status': 'success', 'message': 'Tarefa criada com sucesso'}, status=201)
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
     

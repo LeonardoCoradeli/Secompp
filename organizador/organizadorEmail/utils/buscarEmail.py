@@ -5,7 +5,7 @@ from email.utils import parsedate_to_datetime
 from bs4 import BeautifulSoup
 import datetime
 
-def fetch_email_content(imap_server, email_address, password, folder="INBOX", max_emails=50, fetch_today=False):
+def fetch_email_content(email_address, password, folder="INBOX", imap_server='imap.gmail.com',max_emails=50, fetch_today=False):
     """
     Fetches the text content of emails and prepares them for rendering in a Django template.
     

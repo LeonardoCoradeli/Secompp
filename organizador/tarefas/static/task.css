@@ -1,0 +1,119 @@
+/* task.css */
+
+/* General Styles */
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, h2, p, label, input, button, a {
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font to all text elements */
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+/* Container Styles */
+.container {
+    background-color: rgba(27, 27, 27, 0.8);
+    border-radius: 8px;
+    padding: 20px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 300px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    margin: 20px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+form button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background: white;
+    color: black;
+}
+
+/* Task List Styles */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.task-square {
+    background-color: rgba(50, 50, 50, 0.8);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 200px;
+    text-align: left;
+}
+
+.task-items {
+    margin-top: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 10px;
+}
